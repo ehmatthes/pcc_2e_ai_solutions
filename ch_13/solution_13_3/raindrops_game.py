@@ -65,9 +65,9 @@ class RaindropsGame:
         """Create an drop and place it in the row."""
         drop = Raindrop(self)
         drop_width, drop_height = drop.rect.size
-        drop.x = drop_width + 2 * drop_width * drop_number
-        drop.rect.x = drop.x
-        drop.rect.y = 2 * drop.rect.height * row_number
+        drop.rect.x = drop_width + 2 * drop_width * drop_number
+        drop.y = 2 * drop.rect.height * row_number
+        drop.rect.y = drop.y
         self.raindrops.add(drop)
 
     def _update_screen(self):
