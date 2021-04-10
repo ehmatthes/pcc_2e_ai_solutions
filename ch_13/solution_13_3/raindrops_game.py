@@ -24,6 +24,7 @@ class RaindropsGame:
         """Start the main loop for the game."""
         while True:
             self._check_events()
+            self.raindrops.update()
             self._update_screen()
 
     def _check_events(self):
