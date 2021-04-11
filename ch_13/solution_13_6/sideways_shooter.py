@@ -1,6 +1,5 @@
 import sys
 from random import random
-from time import sleep
 
 import pygame
 
@@ -102,7 +101,7 @@ class SidewaysShooter:
     def _update_aliens(self):
         """Update alien positions, and look for collisions with ship."""
         self.aliens.update()
-        
+
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
             self._ship_hit()
 
