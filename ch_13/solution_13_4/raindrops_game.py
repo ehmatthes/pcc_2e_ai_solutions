@@ -50,7 +50,9 @@ class RaindropsGame:
         drop = Raindrop(self)
         drop_width, drop_height = drop.rect.size
         available_space_x = self.settings.screen_width - drop_width
-        number_drops_x = available_space_x // (2 * drop_width)
+
+        # We'll need this number again to make new rows.
+        self.number_drops_x = available_space_x // (2 * drop_width)
         
         # Determine the number of rows of drops that fit on the screen.
         available_space_y = self.settings.screen_height
@@ -58,8 +60,12 @@ class RaindropsGame:
         
         # Fill the sky with drops.
         for row_number in range(number_rows):
-            for drop_number in range(number_drops_x):
-                self._create_drop(drop_number, row_number)
+            self._create_row(row_number)
+
+    def _create_row(self, row_number):
+        """Create a single row of raindrops."""
+        for drop_number in range(self.number_drops_x):
+            self._create_drop(drop_number, row_number)
 
     def _create_drop(self, drop_number, row_number):
         """Create an drop and place it in the row."""
