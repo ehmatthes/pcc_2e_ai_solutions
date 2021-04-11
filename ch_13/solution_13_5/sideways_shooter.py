@@ -82,6 +82,13 @@ class SidewaysShooter:
             if bullet.rect.left >= self.screen.get_rect().right:
                  self.bullets.remove(bullet)
 
+        self._check_bullet_alien_collisions()
+
+    def _check_bullet_alien_collisions(self):
+        """Check whether any bullets have hit an alien."""
+        collisions = pygame.sprite.groupcollide(
+                self.bullets, self.aliens, True, True)
+
     def _create_alien(self):
         """Create an alien, if conditions are right."""
         if random() < self.settings.alien_frequency:
