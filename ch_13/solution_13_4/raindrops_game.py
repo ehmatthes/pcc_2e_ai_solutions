@@ -92,7 +92,6 @@ class RaindropsGame:
 
         # Make a new row of drops if needed.
         if make_new_drops:
-            print('making new drops')
             self._create_row(0)
 
 
