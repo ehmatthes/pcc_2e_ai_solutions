@@ -15,6 +15,7 @@ class Ship:
 
         # Start each new ship at the center of the left side of the screen.
         # self.center_ship()
+        self.rect.midleft = self.screen_rect.midleft
 
         # Store a decimal value for the ship's vertical position.
         self.y = float(self.rect.y)

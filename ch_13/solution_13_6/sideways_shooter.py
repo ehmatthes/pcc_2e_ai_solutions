@@ -23,7 +23,7 @@ class SidewaysShooter:
         pygame.display.set_caption("Sideways Shooter")
 
         # Create an instance to store game statistics.
-        self.stats = GameStats(self)
+        # self.stats = GameStats(self)
 
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
@@ -37,7 +37,6 @@ class SidewaysShooter:
 
             # Consider creating a new alien.
             self._create_alien()
-
 
             self.ship.update()
             self._update_bullets()
@@ -105,8 +104,8 @@ class SidewaysShooter:
         """Update alien positions, and look for collisions with ship."""
         self.aliens.update()
 
-        if pygame.sprite.spritecollideany(self.ship, self.aliens):
-            self._ship_hit()
+        # if pygame.sprite.spritecollideany(self.ship, self.aliens):
+        #     self._ship_hit()
 
     def _ship_hit(self):
         """Respond to an alien hitting the ship."""
