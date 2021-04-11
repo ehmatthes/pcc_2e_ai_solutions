@@ -105,6 +105,19 @@ class SidewaysShooter:
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
             self._ship_hit()
 
+        # Look for aliens that have hit the left edge of the screen.
+        self._check_aliens_left_edge()
+
+    def _check_aliens_left_edge(self):
+        """Respond to aliens that have hit left edge of the screen.
+        Treat this the same as the ship getting hit.
+        """
+        
+        for alien in self.aliens.sprites():
+            if alien.rect.left < 0:
+                self._ship_hit()
+                break
+
     def _ship_hit(self):
         """Respond to an alien hitting the ship."""
         # Decrement ships left.
