@@ -1,10 +1,12 @@
 import sys
+from random import random
 
 import pygame
 
 from settings import Settings
 from ship import Ship
 from bullet import Bullet
+from alien import Alien
 
 class SidewaysShooter:
     """Overall class to manage game assets and behavior."""
@@ -20,13 +22,20 @@ class SidewaysShooter:
 
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
+        self.aliens = pygame.sprite.Group()
 
     def run_game(self):
         """Start the main loop for the game."""
         while True:
             self._check_events()
+
+            # Consider creating a new alien.
+            self._create_alien()
+
+
             self.ship.update()
             self._update_bullets()
+            self.aliens.update()
             self._update_screen()
 
     def _check_events(self):
@@ -73,12 +82,21 @@ class SidewaysShooter:
             if bullet.rect.left >= self.screen.get_rect().right:
                  self.bullets.remove(bullet)
 
+    def _create_alien(self):
+        """Create an alien, if conditions are right."""
+        if random() < self.settings.alien_frequency:
+            alien = Alien(self)
+            self.aliens.add(alien)
+            print(len(self.aliens))
+
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
         self.screen.fill(self.settings.bg_color)
         self.ship.blitme()
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
+
+        self.aliens.draw(self.screen)
 
         pygame.display.flip()
 
