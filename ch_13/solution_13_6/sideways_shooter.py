@@ -33,12 +33,14 @@ class SidewaysShooter:
         while True:
             self._check_events()
 
-            # Consider creating a new alien.
-            self._create_alien()
+            if self.stats.game_active:
+                # Consider creating a new alien.
+                self._create_alien()
 
-            self.ship.update()
-            self._update_bullets()
-            self._update_aliens()
+                self.ship.update()
+                self._update_bullets()
+                self._update_aliens()
+            
             self._update_screen()
 
     def _check_events(self):
@@ -112,7 +114,7 @@ class SidewaysShooter:
         """Respond to aliens that have hit left edge of the screen.
         Treat this the same as the ship getting hit.
         """
-        
+
         for alien in self.aliens.sprites():
             if alien.rect.left < 0:
                 self._ship_hit()
@@ -120,15 +122,18 @@ class SidewaysShooter:
 
     def _ship_hit(self):
         """Respond to an alien hitting the ship."""
-        # Decrement ships left.
-        self.stats.ships_left -= 1
+        if self.stats.ships_left > 0:
+            # Decrement ships left.
+            self.stats.ships_left -= 1
 
-        # Get rid of any remaining aliens and bullets.
-        self.aliens.empty()
-        self.bullets.empty()
+            # Get rid of any remaining aliens and bullets.
+            self.aliens.empty()
+            self.bullets.empty()
 
-        # Center the ship.
-        self.ship.center_ship()
+            # Center the ship.
+            self.ship.center_ship()
+        else:
+            self.stats.game_active = False
 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
