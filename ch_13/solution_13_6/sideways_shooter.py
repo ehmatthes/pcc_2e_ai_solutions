@@ -23,7 +23,7 @@ class SidewaysShooter:
         pygame.display.set_caption("Sideways Shooter")
 
         # Create an instance to store game statistics.
-        # self.stats = GameStats(self)
+        self.stats = GameStats(self)
 
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
@@ -32,7 +32,6 @@ class SidewaysShooter:
     def run_game(self):
         """Start the main loop for the game."""
         while True:
-            print(self.settings.alien_speed)
             self._check_events()
 
             # Consider creating a new alien.

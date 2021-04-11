@@ -22,6 +22,5 @@ class Settings:
         # Alien settings.
         #  alien_frequency controls how often a new alien appear.s
         #    Higher values -> more frequent aliens. Max = 1.0.
-        self.alien_frequency = 0.01
-        # self.alien_speed = 1.5
+        self.alien_frequency = 0.015
         self.alien_speed = 6.0
