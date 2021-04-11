@@ -103,8 +103,8 @@ class SidewaysShooter:
         """Update alien positions, and look for collisions with ship."""
         self.aliens.update()
 
-        # if pygame.sprite.spritecollideany(self.ship, self.aliens):
-        #     self._ship_hit()
+        if pygame.sprite.spritecollideany(self.ship, self.aliens):
+            self._ship_hit()
 
     def _ship_hit(self):
         """Respond to an alien hitting the ship."""
@@ -115,12 +115,8 @@ class SidewaysShooter:
         self.aliens.empty()
         self.bullets.empty()
 
-        # Pause.
-        sleep(0.5)
-
         # Center the ship.
-        #   This comes after the pause, to indicate play has started again.
-        # self.ship.center_ship()
+        self.ship.center_ship()
 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
