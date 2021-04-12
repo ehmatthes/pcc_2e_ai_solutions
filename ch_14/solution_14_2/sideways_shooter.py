@@ -9,7 +9,7 @@ from ship import Ship
 from bullet import Bullet
 from target import Target
 
-class SidewaysShooter:
+class TargetPractice:
     """Overall class to manage game assets and behavior."""
 
     def __init__(self):
@@ -19,7 +19,7 @@ class SidewaysShooter:
 
         self.screen = pygame.display.set_mode(
                 (self.settings.screen_width, self.settings.screen_height))
-        pygame.display.set_caption("Sideways Shooter")
+        pygame.display.set_caption("Target Practice")
 
         # Create an instance to store game statistics.
         self.stats = GameStats(self)
@@ -88,9 +88,10 @@ class SidewaysShooter:
 
     def _check_bullet_target_collisions(self):
         """Check whether any bullets have hit the target."""
-        return
-        collisions = pygame.sprite.groupcollide(
-                self.bullets, self.aliens, True, True)
+        collisions = pygame.sprite.spritecollide(
+                self.target, self.bullets, True)
+        if collisions:
+            print('hit!')
 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
@@ -106,5 +107,5 @@ class SidewaysShooter:
 
 if __name__ == '__main__':
     # Make a game instance, and run the game.
-    ss_game = SidewaysShooter()
-    ss_game.run_game()
+    tp_game = TargetPractice()
+    tp_game.run_game()
