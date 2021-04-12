@@ -32,7 +32,7 @@ class Target:
             # It's moved past the top of the screen. Place at top of screen,
             #   and change direction.
             self.rect.top = 0
-            self.settings.direction = 1
+            self.direction = 1
         elif self.rect.bottom > self.screen_rect.bottom:
             # Place at bottom, and change direction.
             self.rect.bottom = self.screen_rect.bottom
