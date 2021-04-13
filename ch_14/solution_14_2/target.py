@@ -15,10 +15,7 @@ class Target:
         # Create a target rect at (0, 0) and then set correct position.
         self.rect = pygame.Rect(0, 0, self.settings.target_width,
             self.settings.target_height)
-        self.rect.midright = self.screen_rect.midright
-        
-        # Store the target's position as a decimal value.
-        self.y = float(self.rect.y)
+        self.center_target()
 
         # Positive direction is moving down, negative is moving up.
         self.direction = 1
@@ -40,6 +37,13 @@ class Target:
 
         # Update the rect position.
         self.rect.y = self.y
+
+    def center_target(self):
+        """Center the target on the right side of the screen."""
+        self.rect.midright = self.screen_rect.midright
+        
+        # Store the target's position as a decimal value.
+        self.y = float(self.rect.y)
 
     def draw_target(self):
         """Draw the target to the screen."""
