@@ -72,7 +72,8 @@ class TargetPractice:
         # Get rid of any remaining bullets.
         self.bullets.empty()
 
-        # Center the target.
+        # Center the ship and target.
+        self.ship.center_ship()
         self.target.center_target()
 
         # Hide the mouse cursor.
@@ -103,23 +104,31 @@ class TargetPractice:
             self.bullets.add(new_bullet)
 
     def _update_bullets(self):
-        """Update position of bullets and get rid of old bullets."""
+        """Update position of bullets and get rid of old bullets.
+        Also, update stats for number of misses.
+        """
         # Update bullet positions.
         self.bullets.update()
 
         # Get rid of bullets that have disappeared.
         for bullet in self.bullets.copy():
             if bullet.rect.left >= self.screen.get_rect().right:
-                 self.bullets.remove(bullet)
+                self.bullets.remove(bullet)
+                self._increment_misses()
 
         self._check_bullet_target_collisions()
+
+    def _increment_misses(self):
+        """Increment the number of misses, and check if the game shold end."""
+        self.stats.num_misses += 1
+        if self.stats.num_misses >= self.settings.miss_limit:
+            self.stats.game_active = False
+            pygame.mouse.set_visible(True)
 
     def _check_bullet_target_collisions(self):
         """Check whether any bullets have hit the target."""
         collisions = pygame.sprite.spritecollide(
                 self.target, self.bullets, True)
-        if collisions:
-            print('hit!')
 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""

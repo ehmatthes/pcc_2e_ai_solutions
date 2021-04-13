@@ -25,3 +25,6 @@ class Settings:
         self.target_color = (180, 60,10)
 
         self.target_speed = 1.5
+
+        # Overall game dynamics.
+        self.miss_limit = 3
