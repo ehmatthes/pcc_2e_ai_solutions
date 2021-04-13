@@ -24,14 +24,16 @@ class Settings:
 
         # Overall game dynamics.
         self.miss_limit = 3
-        self.speedup_scale = 1.1
+        self.speedup_scale = 2
+        # After every levelup_hits, level up the difficulty.
+        self.levelup_hits = 2
 
         self.initialize_dynamic_settings()
 
     def initialize_dynamic_settings(self):
         """Initialize settings that change throughout the game."""
         self.ship_speed = 3.0
-        self.bullet_speed = 12.0
+        self.bullet_speed = 24.0
         self.target_speed = 1.5
 
     def increase_speed(self):
